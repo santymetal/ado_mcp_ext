@@ -1,0 +1,24 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/uuid": "^10.0.0",
+    "@types/vscode": "^1.101.0",
+    "@types/ws": "^8.18.1",
+    "uuid": "^11.1.0",
+    "vscode": "^1.1.37",
+    "ws": "^8.18.2"
+  },
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "typescript": "^5.8.3"
+  }
+}

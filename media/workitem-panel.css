@@ -1,0 +1,287 @@
+body {
+    font-family: var(--vscode-font-family);
+    font-size: var(--vscode-font-size);
+    color: var(--vscode-foreground);
+    background-color: var(--vscode-editor-background);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 16px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--vscode-panel-border);
+    padding-bottom: 12px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border: 1px solid var(--vscode-button-border);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: none;
+    user-select: none;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn-primary {
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+}
+
+.btn-primary:hover {
+    background-color: var(--vscode-button-hoverBackground);
+}
+
+.btn-secondary {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+}
+
+.btn-secondary:hover {
+    background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+.btn .codicon {
+    margin-right: 4px;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.loading .codicon {
+    margin-right: 8px;
+}
+
+.error {
+    background-color: var(--vscode-inputValidation-errorBackground);
+    color: var(--vscode-inputValidation-errorForeground);
+    border: 1px solid var(--vscode-inputValidation-errorBorder);
+    padding: 12px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.work-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.work-item {
+    background-color: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 6px;
+    padding: 16px;
+    transition: all 0.2s;
+}
+
+.work-item:hover {
+    border-color: var(--vscode-focusBorder);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.work-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.work-item-id {
+    font-weight: 600;
+    color: var(--vscode-textLink-foreground);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.work-item-id:hover {
+    text-decoration: underline;
+}
+
+.work-item-state {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.state-new {
+    background-color: var(--vscode-debugConsole-infoForeground);
+    color: var(--vscode-editor-background);
+}
+
+.state-active {
+    background-color: var(--vscode-debugConsole-warningForeground);
+    color: var(--vscode-editor-background);
+}
+
+.state-resolved {
+    background-color: var(--vscode-debugConsole-sourceForeground);
+    color: var(--vscode-editor-background);
+}
+
+.state-closed {
+    background-color: var(--vscode-descriptionForeground);
+    color: var(--vscode-editor-background);
+}
+
+.work-item-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.work-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin-bottom: 12px;
+}
+
+.work-item-type {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.work-item-date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.work-item-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.work-item-actions .btn {
+    font-size: 11px;
+    padding: 4px 8px;
+}
+
+.state-selector {
+    background-color: var(--vscode-dropdown-background);
+    color: var(--vscode-dropdown-foreground);
+    border: 1px solid var(--vscode-dropdown-border);
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.state-selector:focus {
+    outline: 1px solid var(--vscode-focusBorder);
+    outline-offset: -1px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--vscode-descriptionForeground);
+}
+
+.empty-state .codicon {
+    font-size: 48px;
+    opacity: 0.5;
+    margin-bottom: 16px;
+}
+
+.empty-state p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.empty-state p:first-of-type {
+    font-weight: 500;
+    color: var(--vscode-foreground);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--vscode-scrollbarSlider-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--vscode-scrollbarSlider-hoverBackground);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--vscode-scrollbarSlider-activeBackground);
+}
+
+/* Animation for loading spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.codicon-modifier-spin {
+    animation: spin 1s infinite linear;
+}
+
+/* Codicon styles */
+.codicon {
+    font-family: 'codicon';
+    font-display: block;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-decoration: none;
+    text-rendering: auto;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.codicon-refresh:before { content: '\eaa2'; }
+.codicon-loading:before { content: '\eaac'; }
+.codicon-inbox:before { content: '\ea70'; }
+.codicon-bug:before { content: '\ea87'; }
+.codicon-checklist:before { content: '\eaa3'; }
+.codicon-person:before { content: '\ea67'; }
+.codicon-calendar:before { content: '\ea93'; }
+.codicon-external-link:before { content: '\ea7a'; }
+.codicon-git-branch:before { content: '\ea82'; }
