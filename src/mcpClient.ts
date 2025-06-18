@@ -171,4 +171,20 @@ export class McpClient {
     async getCommits(repositoryId: string, branch?: string): Promise<any[]> {
         return this.sendRequest('git.getCommits', { repositoryId, branch });
     }
+
+    async getBranches(repositoryId: string): Promise<any[]> {
+        return this.sendRequest('git.getBranches', { repositoryId });
+    }
+
+    async createBranch(repositoryId: string, branchName: string, sourceBranch: string): Promise<any> {
+        return this.sendRequest('git.createBranch', { repositoryId, branchName, sourceBranch });
+    }
+
+    async getRepositories(): Promise<any[]> {
+        return this.sendRequest('git.getRepositories', {});
+    }
+
+    async linkCommitToWorkItem(commitId: string, workItemId: number): Promise<any> {
+        return this.sendRequest('git.linkCommit', { commitId, workItemId });
+    }
 }

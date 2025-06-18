@@ -20,5 +20,5 @@
     "@types/node": "^24.0.3",
     "typescript": "^5.8.3"
   },
-  "description": ""
+  "description": "A comprehensive VS Code extension that integrates with Azure DevOps through an MCP server to provide seamless work item lifecycle management directly within your development environment."
 }

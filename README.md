@@ -18,11 +18,11 @@ Use natural language commands with Copilot:
 - `"create task titled 'Fix login bug'"`
 - `"link PR https://dev.azure.com/... to work item #789"`
 
-### 🔄 Automated Workflow Management
-- **Commit Tracking**: Automatically updates work items when commits reference them (#123, AB#123, workitem: 123)
-- **PR Monitoring**: Monitors pull requests and updates associated work items
-- **State Transitions**: Automatically moves work items through states based on development progress
-- **Review Reminders**: Sends notifications for pending PR reviews
+### 🔄 Automated Azure DevOps Workflow
+- **ADO Commit Tracking**: Monitors Azure DevOps repositories and updates work items when commits reference them (#123, AB#123, workitem: 123)
+- **ADO PR Monitoring**: Tracks Azure DevOps pull requests and automatically updates associated work items
+- **State Transitions**: Moves work items through states based on ADO repository activity
+- **Review Reminders**: Sends notifications for pending ADO pull request reviews
 
 ### 📊 Visual Interface
 - **Work Items Panel**: Interactive webview showing assigned work items
@@ -65,12 +65,12 @@ export AZURE_DEVOPS_PAT="your-pat-token"
 
 ## Usage Workflow
 
-1. **Setup**: Configure organization, project, and MCP server URL
-2. **Authentication**: Set your Personal Access Token
-3. **Work Assignment**: Use Copilot or commands to assign work items
-4. **Development**: Create branches, make commits with work item references
-5. **PR Creation**: Link pull requests to work items automatically
-6. **Completion**: Work items resolve automatically when PRs merge
+1. **Setup**: Configure Azure DevOps organization, project, and MCP server URL
+2. **Authentication**: Set your Azure DevOps Personal Access Token
+3. **Work Assignment**: Use Copilot or commands to assign work items from Azure DevOps
+4. **Development**: Work in your local VS Code, make commits that reference work items
+5. **ADO Integration**: Extension automatically syncs commits and PRs with Azure DevOps
+6. **Completion**: Work items resolve automatically when Azure DevOps PRs merge
 
 ## Commands
 

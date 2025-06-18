@@ -60,7 +60,7 @@ async function activate(context) {
         await mcpClient.connect();
         // Initialize managers
         workItemManager = new workItemManager_1.WorkItemManager(mcpClient, config);
-        gitIntegration = new gitIntegration_1.GitIntegration(workItemManager);
+        gitIntegration = new gitIntegration_1.GitIntegration(workItemManager, mcpClient);
         prMonitor = new prMonitor_1.PrMonitor(workItemManager, mcpClient);
         copilotIntegration = new copilotIntegration_1.CopilotIntegration(workItemManager);
         // Initialize webview provider

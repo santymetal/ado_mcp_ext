@@ -207,9 +207,15 @@ class PrMonitor {
         };
     }
     async getRepositoryIds() {
-        // In a real implementation, this would come from configuration or project settings
-        // For now, return a placeholder
-        return ['default-repo'];
+        try {
+            // Get Azure DevOps repositories through MCP server
+            const repositories = await this.mcpClient.getRepositories();
+            return repositories.map((repo) => repo.id);
+        }
+        catch (error) {
+            console.error('Failed to get ADO repository IDs:', error);
+            return [];
+        }
     }
     async getPRReviewers(prId) {
         // In a real implementation, this would fetch actual reviewers from the PR

@@ -28,7 +28,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
         // Initialize managers
         workItemManager = new WorkItemManager(mcpClient, config);
-        gitIntegration = new GitIntegration(workItemManager);
+        gitIntegration = new GitIntegration(workItemManager, mcpClient);
         prMonitor = new PrMonitor(workItemManager, mcpClient);
         copilotIntegration = new CopilotIntegration(workItemManager);
 

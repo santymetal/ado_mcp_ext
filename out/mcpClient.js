@@ -177,6 +177,18 @@ class McpClient {
     async getCommits(repositoryId, branch) {
         return this.sendRequest('git.getCommits', { repositoryId, branch });
     }
+    async getBranches(repositoryId) {
+        return this.sendRequest('git.getBranches', { repositoryId });
+    }
+    async createBranch(repositoryId, branchName, sourceBranch) {
+        return this.sendRequest('git.createBranch', { repositoryId, branchName, sourceBranch });
+    }
+    async getRepositories() {
+        return this.sendRequest('git.getRepositories', {});
+    }
+    async linkCommitToWorkItem(commitId, workItemId) {
+        return this.sendRequest('git.linkCommit', { commitId, workItemId });
+    }
 }
 exports.McpClient = McpClient;
 //# sourceMappingURL=mcpClient.js.map

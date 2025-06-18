@@ -214,9 +214,14 @@ export class PrMonitor {
     }
 
     private async getRepositoryIds(): Promise<string[]> {
-        // In a real implementation, this would come from configuration or project settings
-        // For now, return a placeholder
-        return ['default-repo'];
+        try {
+            // Get Azure DevOps repositories through MCP server
+            const repositories = await this.mcpClient.getRepositories();
+            return repositories.map((repo: any) => repo.id);
+        } catch (error) {
+            console.error('Failed to get ADO repository IDs:', error);
+            return [];
+        }
     }
 
     private async getPRReviewers(prId: number): Promise<string[]> {

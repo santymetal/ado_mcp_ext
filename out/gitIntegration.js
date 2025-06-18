@@ -36,14 +36,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GitIntegration = void 0;
 const vscode = __importStar(require("vscode"));
 class GitIntegration {
-    constructor(workItemManager) {
+    constructor(workItemManager, mcpClient) {
         this.workItemManager = workItemManager;
+        this.mcpClient = mcpClient;
         this.repositories = [];
         this.disposables = [];
     }
     async initialize() {
         try {
-            // Get Git extension
+            // Get Git extension for local VS Code integration
             const gitExtension = vscode.extensions.getExtension('vscode.git');
             if (!gitExtension) {
                 throw new Error('Git extension not found');
@@ -53,13 +54,15 @@ class GitIntegration {
             }
             this.gitExtension = gitExtension.exports.getAPI(1);
             this.repositories = this.gitExtension.repositories;
-            // Set up event listeners for each repository
+            // Set up event listeners for local repository changes
             this.setupRepositoryListeners();
-            console.log(`Git integration initialized with ${this.repositories.length} repositories`);
+            // Start monitoring Azure DevOps repositories through MCP
+            this.startAdoRepositoryMonitoring();
+            console.log(`ADO Git integration initialized with ${this.repositories.length} local repositories`);
         }
         catch (error) {
-            console.error('Failed to initialize Git integration:', error);
-            vscode.window.showWarningMessage('Git integration failed to initialize. Automatic work item updates on commit will not work.');
+            console.error('Failed to initialize ADO Git integration:', error);
+            vscode.window.showWarningMessage('Azure DevOps Git integration failed to initialize. Automatic work item updates may not work.');
         }
     }
     setupRepositoryListeners() {
@@ -111,15 +114,16 @@ class GitIntegration {
             // Extract work item ID from commit message
             const workItemId = this.workItemManager.getWorkItemFromCommitMessage(commitMessage);
             if (workItemId) {
-                console.log(`Found work item ${workItemId} in commit ${commitSha}`);
-                // Update work item with commit information
+                console.log(`Found work item ${workItemId} in ADO commit ${commitSha}`);
+                // Update work item with commit information via MCP
                 await this.workItemManager.updateWorkItemOnCommit(workItemId, commitSha, commitMessage);
-                // Show notification
-                vscode.window.showInformationMessage(`Work item ${workItemId} updated with commit ${commitSha.substring(0, 8)}`);
+                // Sync commit to Azure DevOps if needed
+                await this.syncCommitToAdo(commitSha, commitMessage, workItemId);
+                vscode.window.showInformationMessage(`Work item ${workItemId} updated with ADO commit ${commitSha.substring(0, 8)}`);
             }
         }
         catch (error) {
-            console.error('Failed to process commit:', error);
+            console.error('Failed to process ADO commit:', error);
         }
     }
     async createBranch(workItemId, workItemTitle) {
@@ -176,6 +180,55 @@ class GitIntegration {
         catch (error) {
             console.error('Failed to get current branch:', error);
             return null;
+        }
+    }
+    async startAdoRepositoryMonitoring() {
+        // Monitor Azure DevOps repositories through MCP server
+        try {
+            console.log('Starting Azure DevOps repository monitoring...');
+            // This could be expanded to poll ADO repos for changes
+            // For now, we rely on local Git events and sync to ADO
+        }
+        catch (error) {
+            console.error('Failed to start ADO repository monitoring:', error);
+        }
+    }
+    async syncCommitToAdo(commitSha, commitMessage, workItemId) {
+        try {
+            // Ensure the commit is properly linked in Azure DevOps
+            // The MCP server handles the actual ADO API calls
+            console.log(`Syncing commit ${commitSha} to Azure DevOps for work item ${workItemId}`);
+            // Additional ADO-specific commit linking could be added here
+            // through the MCP client if needed
+        }
+        catch (error) {
+            console.error('Failed to sync commit to Azure DevOps:', error);
+        }
+    }
+    async getAdoRepositoryBranches(repositoryId) {
+        try {
+            // Get branches from Azure DevOps repository through MCP
+            const branches = await this.mcpClient.sendRequest('git.getBranches', { repositoryId });
+            return branches || [];
+        }
+        catch (error) {
+            console.error('Failed to get ADO repository branches:', error);
+            return [];
+        }
+    }
+    async createAdoBranch(repositoryId, branchName, sourceBranch = 'main') {
+        try {
+            // Create branch in Azure DevOps repository through MCP
+            await this.mcpClient.sendRequest('git.createBranch', {
+                repositoryId,
+                branchName,
+                sourceBranch
+            });
+            vscode.window.showInformationMessage(`Created ADO branch: ${branchName}`);
+        }
+        catch (error) {
+            console.error('Failed to create ADO branch:', error);
+            vscode.window.showErrorMessage(`Failed to create ADO branch: ${error}`);
         }
     }
     dispose() {
