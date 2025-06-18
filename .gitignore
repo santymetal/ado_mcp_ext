@@ -1,0 +1,15 @@
+out
+node_modules
+.vscode-test
+*.vsix
+.env
+.DS_Store
+Thumbs.db
+*.log
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.history/
+*.swp
+*.swo
+*~

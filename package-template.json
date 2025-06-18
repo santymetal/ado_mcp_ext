@@ -1,0 +1,145 @@
+{
+  "name": "azure-devops-workitem-manager",
+  "displayName": "Azure DevOps Work Item Manager",
+  "description": "Manage Azure DevOps work items directly from VS Code with MCP server integration",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/azure-devops-workitem-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/azure-devops-workitem-manager/issues"
+  },
+  "homepage": "https://github.com/your-username/azure-devops-workitem-manager#readme",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Azure"
+  ],
+  "keywords": [
+    "azure",
+    "devops",
+    "work items",
+    "mcp",
+    "copilot",
+    "git"
+  ],
+  "activationEvents": [
+    "onCommand:azuredevops.assignWorkItem",
+    "onView:workItemsPanel"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "azuredevops.assignWorkItem",
+        "title": "Assign Work Item",
+        "category": "Azure DevOps"
+      },
+      {
+        "command": "azuredevops.updateWorkItem",
+        "title": "Update Work Item",
+        "category": "Azure DevOps"
+      },
+      {
+        "command": "azuredevops.createWorkItem",
+        "title": "Create Work Item",
+        "category": "Azure DevOps"
+      },
+      {
+        "command": "azuredevops.linkPR",
+        "title": "Link Pull Request",
+        "category": "Azure DevOps"
+      },
+      {
+        "command": "azuredevops.showWorkItems",
+        "title": "Show Work Items Panel",
+        "category": "Azure DevOps"
+      },
+      {
+        "command": "azuredevops.refreshWorkItems",
+        "title": "Refresh Work Items",
+        "category": "Azure DevOps"
+      },
+      {
+        "command": "azuredevops.copilot.workitem",
+        "title": "Work Item Assistant",
+        "category": "Azure DevOps"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "workItemsPanel",
+          "name": "Azure DevOps Work Items",
+          "type": "webview"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Azure DevOps Work Item Manager",
+      "properties": {
+        "azuredevops.organization": {
+          "type": "string",
+          "default": "",
+          "description": "Azure DevOps organization name"
+        },
+        "azuredevops.project": {
+          "type": "string",
+          "default": "",
+          "description": "Azure DevOps project name"
+        },
+        "azuredevops.mcpServerUrl": {
+          "type": "string",
+          "default": "ws://localhost:3000",
+          "description": "MCP server WebSocket URL"
+        },
+        "azuredevops.autoUpdateOnCommit": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically update work items when commits are made"
+        },
+        "azuredevops.autoUpdateOnPR": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically update work items when PRs are created or merged"
+        },
+        "azuredevops.enableReviewReminders": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable review reminders for pull requests"
+        },
+        "azuredevops.reviewReminderDays": {
+          "type": "number",
+          "default": 2,
+          "description": "Number of days before sending review reminders"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/vscode": "^1.74.0",
+    "@types/uuid": "^9.0.0",
+    "@types/ws": "^8.5.0",
+    "typescript": "^5.1.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "dependencies": {
+    "ws": "^8.13.0",
+    "uuid": "^9.0.0"
+  }
+}
