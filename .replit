@@ -13,19 +13,11 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "VS Code Extension Build"
+args = "vscode_extension_test"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "vscode_extension_test"
-
-[[workflows.workflow]]
-name = "VS Code Extension Build"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm install && npm install -g typescript && npm install @types/vscode @types/node uuid ws && tsc && echo \"TypeScript compilation completed. Extension built successfully.\""
+args = "Extension Compiler"
 
 [[workflows.workflow]]
 name = "vscode_extension_test"
@@ -34,6 +26,14 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm init -y && npm install --save vscode @types/vscode ws uuid @types/ws @types/uuid && npm install --save-dev typescript @types/node && npx tsc"
+
+[[workflows.workflow]]
+name = "Extension Compiler"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install && tsc --build"
 
 [deployment]
 run = ["sh", "-c", "npm install && npm install -g typescript && npm install @types/vscode @types/node uuid ws && tsc && echo \"TypeScript compilation completed. Extension built successfully.\""]

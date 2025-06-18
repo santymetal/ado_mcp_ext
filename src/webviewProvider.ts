@@ -21,7 +21,7 @@ export class WorkItemWebviewProvider implements vscode.WebviewViewProvider {
         webviewView.webview.options = {
             enableScripts: true,
             localResourceRoots: [
-                vscode.Uri.joinPath(this._extensionUri, 'media')
+                vscode.Uri.file(this._extensionUri.fsPath + '/media')
             ]
         };
 
@@ -119,8 +119,8 @@ export class WorkItemWebviewProvider implements vscode.WebviewViewProvider {
     }
 
     private _getHtmlForWebview(webview: vscode.Webview) {
-        const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'workitem-panel.js'));
-        const styleUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'workitem-panel.css'));
+        const scriptUri = webview.asWebviewUri(vscode.Uri.file(this._extensionUri.fsPath + '/media/workitem-panel.js'));
+        const styleUri = webview.asWebviewUri(vscode.Uri.file(this._extensionUri.fsPath + '/media/workitem-panel.css'));
 
         return `<!DOCTYPE html>
 <html lang="en">

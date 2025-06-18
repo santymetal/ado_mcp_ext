@@ -69,7 +69,7 @@ export class WorkItemManager {
 
     async updateWorkItemState(workItemId: number, newState: string): Promise<void> {
         try {
-            const fields = {
+            const fields: Record<string, any> = {
                 'System.State': newState
             };
 
